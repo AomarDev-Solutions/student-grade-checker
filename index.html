@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Grade Checker</title>
+  <style>
+    /* Basic Styling */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      padding: 30px;
+      max-width: 600px;
+      margin: auto;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    .container {
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    label, input {
+      display: block;
+      margin: 10px 0;
+    }
+
+    input[type="text"], input[type="number"] {
+      width: 100%;
+      padding: 8px;
+      box-sizing: border-box;
+    }
+
+    button {
+      padding: 10px 15px;
+      background-color: steelblue;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Student Grade Checker</h1>
+
+    <!-- Input Form -->
+    <label for="studentName">Student Name:</label>
+    <input type="text" id="studentName" placeholder="Enter student's name">
+
+    <label for="studentScore">Score (0 - 100):</label>
+    <input type="number" id="studentScore" placeholder="Enter student's score">
+
+    <!-- Submit Button -->
+    <button onclick="checkGrade()">Check Grade</button>
+
+    <!-- Display Result -->
+    <p id="result"></p>
+  </div>
+
+  <script>
+    // Function to check and display grade
+    function checkGrade() {
+      // Get input values
+      const name = document.getElementById("studentName").value;
+      const score = Number(document.getElementById("studentScore").value);
+
+      // Variable to store grade
+      let grade = '';
+
+      // Validate input score range
+      if (score < 0 || score > 100 || isNaN(score)) {
+        document.getElementById("result").textContent = "Please enter a valid score between 0 and 100.";
+        return;
+      }
+
+      // Check grade based on score
+      if (score >= 90) {
+        grade = 'A';
+      } else if (score >= 80) {
+        grade = 'B';
+      } else if (score >= 70) {
+        grade = 'C';
+      } else if (score >= 60) {
+        grade = 'D';
+      } else {
+        grade = 'F';
+      }
+
+      // Show the result
+      document.getElementById("result").textContent =
+        `${name} scored ${score}, which is a Grade ${grade}`;
+    }
+  </script>
+
+</body>
+</html>
